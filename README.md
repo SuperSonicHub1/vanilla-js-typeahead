@@ -27,7 +27,7 @@ search_box.addEventListener('input', handleChange)
 ```
 
 ## What?
-I know, right! This is pretty awesome! Simple and clean typeahead without the need for a library like [typeahead.js](https://twitter.github.io/typeahead.js/), as long as you don't need more than two text boxes. If you were super ambitious, you could add images via `background-image`.
+I know, right! This is pretty awesome! Simple and clean typeahead without the need for a library like [typeahead.js](https://twitter.github.io/typeahead.js/), as long as you don't need more than two text boxes or images.
 
 The only downside I currently see is that updating the results can appear slow and/or glitchy at times.
 

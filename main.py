@@ -48,13 +48,15 @@ def autocomplete():
     for item in body[0]:
         # Either get the nice looking version of the result or remove <b> tags from the normal version
         result_text = item[3]["zh"] if len(item) > 3 else Markup(item[0]).striptags()
-        # Get subtext if exists
+        # Get subtext/image if exists
         result_subtext = item[3]["zi"] if len(item) > 3 else ''
+        result_image = item[3]["zs"] if len(item) > 3 else ''
         results.append({
             "result": result_text,
-            "subtext": result_subtext
+            "subtext": result_subtext,
+            "image": result_image
         })
     return jsonify(results)
 
 
-app.run(host='0.0.0.0', port=8080)
+app.run(host='0.0.0.0', port=8080, debug=True)

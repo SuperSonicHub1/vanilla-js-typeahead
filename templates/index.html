@@ -31,7 +31,7 @@
         </form>
 
         <h2>What?!</h2>
-        <p>I know, right! This is pretty awesome! Simple and clean typeahead without the need for a library like <a href="https://twitter.github.io/typeahead.js/">typeahead.js</a>, as long as you don't need more than two text boxes. If you were super ambitious, you could add images via <code>background-image</code>.</p>
+        <p>I know, right! This is pretty awesome! Simple and clean typeahead without the need for a library like <a href="https://twitter.github.io/typeahead.js/">typeahead.js</a>, as long as you don't need more than two text boxes or images.</p>
         <p>The only downside I currently see is that updating the results can appear slow and/or glitchy at times.</p>
         <p>This whole project is open-source, so feel free to take a gander at the code, although there isn't a whole lot to see (which is a good thing!).</p>
         <p>Also, if you're wondering where I'm getting my autocomplete results from, they're from Google. I request and clean them up on the backend, and then send the results to the frontend. <a href="/autocomplete?q=hello world">Check it out!</a></p>
@@ -64,7 +64,7 @@
             const res = await fetch(`/autocomplete?q=${encodeURIComponent(query)}`)
             body = await res.json()
             removeAllChildNodes(datalist)
-            for (const {result, subtext} of body) {
+            for (const {result, subtext, image} of body) {
                 const option = new Option(subtext, result)
                 datalist.appendChild(option)
             }
