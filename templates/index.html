@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Datalist Typeahead</title>
+</head>
+
+<body>
+	<input type="search" id="search-bar" list="autocomplete" placeholder="Search...">
+    <datalist id="autocomplete"></datalist>
+    <script>
+        function removeAllChildNodes(parent) {
+            while (parent.firstChild) {
+                parent.removeChild(parent.firstChild)
+            }
+        }
+
+        const search_box = document.getElementById("search-bar")
+        const datalist = document.getElementById("autocomplete")
+        async function handleChange(e) {
+            const query = e.target.value
+            const res = await fetch(`/autocomplete?q=${query}`)
+            body = await res.json()
+            removeAllChildNodes(datalist)
+            console.log(body)
+            for (const item of body) {
+                const {result, subtext} = item
+                const option = new Option(subtext, result)
+                datalist.appendChild(option)
+            }
+        }
+
+        search_box.addEventListener('input', handleChange)
+    </script>
+</body>
+</html>
